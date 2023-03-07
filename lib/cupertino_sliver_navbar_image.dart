@@ -5,45 +5,80 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-class CupertinoSliverNavBarImage extends StatelessWidget {
-  const CupertinoSliverNavBarImage({super.key});
+class CupertinoSliverNavigationBarImage extends StatelessWidget {
+  final Widget? largeTitle;
+
+  final Widget? leading;
+  final bool automaticallyImplyLeading;
+  final bool automaticallyImplyTitle;
+  final bool alwaysShowMiddle;
+
+  final String? previousPageTitle;
+  final Widget? middle;
+  final Widget? trailing;
+  final Color? backgroundColor;
+  final Brightness? brightness;
+  final EdgeInsetsDirectional? padding;
+  final Border? border;
+  final bool transitionBetweenRoutes;
+  final bool stretch;
+  final Widget child;
+
+  const CupertinoSliverNavigationBarImage({
+    super.key,
+    required this.child,
+    this.largeTitle,
+    this.leading,
+    this.automaticallyImplyLeading = true,
+    this.automaticallyImplyTitle = true,
+    this.alwaysShowMiddle = true,
+    this.previousPageTitle,
+    this.middle,
+    this.trailing,
+    this.border,
+    this.backgroundColor = Colors.white,
+    this.brightness,
+    this.padding,
+    this.transitionBetweenRoutes = true,
+    this.stretch = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SliverStack(
       children: [
-        const nav_bar_override.CupertinoSliverNavigationBar(
-          largeTitle: Text('Betaaloverzicht'),
-          backgroundColor: Colors.white,
-          // leading: InkWell(
-          //   onTap: () => context.popRoute(),
-          //   radius: 64,
-          //   child: Icon(FontAwesomeIcons.chevronLeft, size: 24, color: TColor.teal500),
-          // ),
+        nav_bar_override.CupertinoSliverNavigationBar(
+          key: key,
+          largeTitle: largeTitle,
+          leading: null,
           automaticallyImplyLeading: false,
-          previousPageTitle: 'Dashboard',
-          automaticallyImplyTitle: true,
-          border: null,
+          automaticallyImplyTitle: automaticallyImplyTitle,
+          alwaysShowMiddle: alwaysShowMiddle,
+          previousPageTitle: previousPageTitle,
+          middle: middle,
+          trailing: trailing,
+          backgroundColor: backgroundColor,
+          brightness: brightness,
+          padding: padding,
+          border: border,
+          transitionBetweenRoutes: transitionBetweenRoutes,
+          stretch: stretch,
         ),
         SliverToBoxAdapter(
           child: SizedBox(
             height: 148,
             child: Stack(
               children: [
-                Image.network(
-                  'https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                ),
+                child,
                 Positioned(
                   bottom: -4,
                   left: 0,
                   right: 0,
                   child: Container(
                     height: 16,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
+                    decoration: BoxDecoration(
+                      color: backgroundColor,
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20),
                       ),
@@ -57,17 +92,13 @@ class CupertinoSliverNavBarImage extends StatelessWidget {
         SliverPinnedHeader(
           child: Container(
             alignment: Alignment.centerLeft,
-            // padding: const EdgeInsets.only(left: 16, top: 56, bottom: 24),j
-            margin: const EdgeInsets.only(
-              left: 16,
-              top: 48,
-            ),
+            margin: const EdgeInsets.only(left: 16, top: 48),
             child: InkWell(
               onTap: () => Navigator.of(context).pop(),
-              child: const CircleAvatar(
+              child: CircleAvatar(
                 radius: 18,
-                backgroundColor: Colors.white,
-                child: Icon(
+                backgroundColor: backgroundColor,
+                child: const Icon(
                   CupertinoIcons.chevron_back,
                   size: 18,
                 ),

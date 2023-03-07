@@ -1,7 +1,7 @@
 name: cupertino_sliver_navbar_image
-description: A new Flutter package project.
+description: Adds an image hero above the CupertinoSliverNavigationBar.
 version: 0.0.1
-homepage:
+homepage: https://github.com/devepoling-nl/cupertino_sliver_navbar_image
 
 environment:
   sdk: '>=2.19.2 <3.0.0'
