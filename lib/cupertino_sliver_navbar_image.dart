@@ -557,21 +557,6 @@ class _LargeTitleNavigationBarSliverDelegate extends SliverPersistentHeaderDeleg
               top: 0.0,
               child: persistentNavigationBar,
             ),
-            Positioned(
-              left: 16.0,
-              top: _kNavBarPersistentHeight + 4,
-              child: InkWell(
-                onTap: () => Navigator.of(context).pop(),
-                child: CircleAvatar(
-                  radius: 18,
-                  backgroundColor: backgroundColor,
-                  child: const Icon(
-                    CupertinoIcons.chevron_back,
-                    size: 18,
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
